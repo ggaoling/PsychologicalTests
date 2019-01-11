@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Radio, Icon } from 'antd'
+import { Form, Radio, Icon, Checkbox } from 'antd'
 
 class AddTally extends React.Component {
 
@@ -11,26 +11,53 @@ class AddTally extends React.Component {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
         };
-        const data = {
-            qname: 'queque:',
-            qid: 123,
-            qoption: ['1', '2', '3', '4']
-        }
+        const data = [
+            {
+                qname: 'queque1:',
+                qid: '1',
+                qoption: ['1', '2', '3', '4'],
+                qtype: 'T',
+            },
+            {
+                qname: 'queque2:',
+                qid: '2',
+                qoption: ['1', '2', '3', '4'],
+                qtype: 'T',
+            },
+            {
+                qname: 'queque3:',
+                qid: '3',
+                qoption: ['1', '2', '3', '4', '5'],
+                qtype: 'F',
+            }
+        ]
         return (
             <div>
                 <Form onSubmit={this.handleSubmit}>
-                    <FormItem {...formItemLayout}>
-                        <p>{data.qname}</p>
-                        {qid = data.qid && getFieldDecorator({ qid })(
-                            <Radio.Group>
-                                {data.qoption.map(o=><Radio value={o}>{o}</Radio>)}
-                            </Radio.Group>
-                        )}
-                    </FormItem>
+                    {data.map((item, index) => (
+                        <FormItem {...formItemLayout} key={index}>
+                            <p>{index + 1}.{item.qtype == 'F' ? '(多选)' : ''} {item.qname}</p>
+                            {item.qtype === 'T' ? <div>{getFieldDecorator(item.qid)(
+                                <Radio.Group>
+                                    {item.qoption.map((o, index) => <Radio value={o} key={index}>{o}</Radio>)}
+                                </Radio.Group>
+                            )}</div> :
+                                <div>
+                                    {getFieldDecorator(item.qid)(
+                                        <Checkbox.Group style={{ width: "100%" }}>
+                                            {item.qoption.map((o, index) => <Checkbox value={o} key={index}>{o}</Checkbox>)}
+                                        </Checkbox.Group>
+                                    )}
+                                </div>
+                            }
+
+                        </FormItem>
+                    ))}
+
                 </Form>
             </div>
         );
     }
 }
 
-export default AddTally;
+export default Form.create({ name: 'questions' })(AddTally);

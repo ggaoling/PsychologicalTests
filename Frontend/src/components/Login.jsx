@@ -24,7 +24,7 @@ class NormalLoginForm extends React.Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 handleSaveLoginInfo(values);
-                // this.context.router.push("/addTally");
+                this.context.router.push("/addTally");
             }
         });
     };
