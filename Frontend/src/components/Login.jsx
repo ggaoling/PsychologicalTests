@@ -1,59 +1,59 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Icon, Input, Button } from 'antd';
+import { Form, Icon, Input, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
 
-class NormalLoginForm extends React.Component{
-    constructor(){
+class NormalLoginForm extends React.Component {
+    constructor() {
         super();
-        this.state={
+        this.state = {
 
         }
     }
     static contextTypes = {
         router: PropTypes.object
     };
-    register=()=>{
+    register = () => {
         this.context.router.push('/register')
     };
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const {handleSaveLoginInfo}=this.props;
+        const { handleSaveLoginInfo } = this.props;
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 handleSaveLoginInfo(values);
-                this.context.router.push("/addTally");
+                // this.context.router.push("/addTally");
             }
         });
     };
 
-    render(){
+    render() {
         const { getFieldDecorator } = this.props.form;
         return (
             <div>
                 <Form onSubmit={this.handleSubmit} className="login-form">
-                    <FormItem>
+                    <Form.Item>
                         {getFieldDecorator('userName', {
-                            rules: [{ required: true, message: '请输入您的用户名!' }],
+                            rules: [{ required: true, message: 'Please input your username!' }],
                         })(
-                            <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="用户名" />
+                            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
                         )}
-                    </FormItem>
-                    <FormItem>
+                    </Form.Item>
+                    <Form.Item>
                         {getFieldDecorator('password', {
-                            rules: [{ required: true, message: '请输入您的密码!' }],
+                            rules: [{ required: true, message: 'Please input your Password!' }],
                         })(
-                            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="密码" placeholder="Password" />
+                            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
                         )}
-                    </FormItem>
-                    <FormItem>
-                        <a href="" onClick={this.register}>没有账号！前去注册</a>
+                    </Form.Item>
+                    <Form.Item>
                         <Button type="primary" htmlType="submit" className="login-form-button">
-                            登陆
+                            Log in
                         </Button>
-                    </FormItem>
+                        Or <a href="" onClick={this.register}>register now!</a>
+                    </Form.Item>
                 </Form>
             </div>
         );
