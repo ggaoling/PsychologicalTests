@@ -27,3 +27,34 @@
 .list code {
   background: #f7f7f7;
 }
+
+.logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255,255,255,.2);
+  margin: 16px 24px 16px 0;
+  float: left;
+}
+
+.loginForm{
+  width: 300px;
+  /* height:500px; */
+  /* left:40%;
+  top:40%;
+  position: absolute; */
+  
+}
+
+.loginFormForgot {
+  float: right;
+}
+
+.loginFormButton {
+  width: 50%;
+}
+
+.lost{
+  margin-top:200px;
+  height:200px;
+  background: url(../assets/404error.jpeg)no-repeat center 0;
+}

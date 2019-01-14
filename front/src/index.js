@@ -1,5 +1,6 @@
 import dva from 'dva';
 import './index.css';
+import createLogger from 'redux-logger'
 
 // 1. Initialize
 const app = dva();
@@ -8,7 +9,8 @@ const app = dva();
 // app.use({});
 
 // 3. Model
-// app.model(require('./models/example').default);
+app.model(require('./models/example').default);
+app.model(require('./models/login').default)
 
 // 4. Router
 app.router(require('./router').default);
