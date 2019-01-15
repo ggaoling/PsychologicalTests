@@ -58,3 +58,23 @@
   height:200px;
   background: url(../assets/404error.jpeg)no-repeat center 0;
 }
+
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 12px;
+  cursor: pointer;
+  transition: color .3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.logout{
+  font-size:16px
+}
+
+.logout:hover{
+  font-size: 20px bold
+}

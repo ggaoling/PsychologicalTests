@@ -11,8 +11,8 @@ class NormalLoginForm extends React.Component {
         this.state = {}
     }
     handleSubmit = () => {
-        const {dispatch}=this.props;
-        const data = this.props.form.getFieldsValue();
+        const {dispatch,form}=this.props;
+        const data = form.getFieldsValue();
         dispatch({type:'login/login',payload:data})
 
         if (data.userName == "123" && data.password == "123"){
@@ -25,7 +25,7 @@ class NormalLoginForm extends React.Component {
         const { getFieldDecorator } = this.props.form;
         return (
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 800 }}>
-                <Form onSubmit={this.handleSubmit} className={styles.loginForm}>
+                <Form  className={styles.loginForm}>
                     <Form.Item >
                         {getFieldDecorator('userName', {
                             rules: [{ required: true, message: 'Please input your username!' }],
@@ -41,9 +41,9 @@ class NormalLoginForm extends React.Component {
                         )}
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" className={styles.loginFormButton}>
+                        <Button type="primary" onClick={this.handleSubmit} className={styles.loginFormButton}>
                             Log in
-            </Button>
+                        </Button>
                         Or <a href="" onClick={this.register}>register now!</a>
                     </Form.Item>
                 </Form>
@@ -54,4 +54,4 @@ class NormalLoginForm extends React.Component {
 
 }
 const Login = Form.create()(NormalLoginForm);
-export default connect(({login})=>({login}))(Login)
+export default connect(({user})=>({user}))(Login)
